@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'textimize-react-app' 
+            image 'prakie7/textimize-react-app' 
             args '-p 3000:3000' 
         }
     }
