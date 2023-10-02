@@ -9,7 +9,7 @@ pipeline {
             steps {
                 sh '''
                 docker build -t ${DOCKER_IMAGE} .
-                docker login -u officialprakhar2108@gmail.com -p ${DOCKERHUB_CRED}
+                docker login -u prakie7 -p ${DOCKERHUB_CRED}
                 '''
             }
         }
