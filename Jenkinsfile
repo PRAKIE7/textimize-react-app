@@ -13,7 +13,9 @@ pipeline {
             }
         }
         stage('PUSH') {
-            sh 'docker push prakie7/textimize-react-app'
+            steps {
+                sh 'docker push prakie7/textimize-react-app'
+            }
         }
     }
 }
