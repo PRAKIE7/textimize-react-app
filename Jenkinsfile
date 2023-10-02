@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKERHUB_CRED = credentials('prakie7') 
+        DOCKERHUB_CRED = credentials('dockerhub') 
         DOCKER_IMAGE = "prak7/react-app:${BUILD_NUMBER}"
     }
     stages {
