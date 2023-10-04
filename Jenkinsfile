@@ -14,6 +14,7 @@ pipeline {
                 script{
                     sh '''
                     docker run aquasec/trivy
+                    curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/master/contrib/install.sh | sh -s -- -b /usr/local/bin
                     trivy image prakie7/react-app
                     '''
                 }
