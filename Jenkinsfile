@@ -19,5 +19,12 @@ pipeline {
                 sh 'docker push prakie7/react-app'
             }
         }
+        stage('Trivy') {
+            steps {
+                script{
+                    sh 'trivy image prakie7/react-app'
+                }
+            }
+        }
     }
 }
