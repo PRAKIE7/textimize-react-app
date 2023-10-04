@@ -1,21 +1,22 @@
 pipeline {
     agent any
     environment {
-        DOCKERHUB_CRED = credentials('dockerhub') 
-        DOCKER_IMAGE = "my-react-app:${BUILD_NUMBER}"
+       DOCKERHUB_CREDENTIALS = credentials('dockerhub1') 
     }
     stages {
-        stage('Build') { 
+        stage('Build') {
+          steps {
+            sh 'docker build -t prakie7/react-app .'
+          }
+        }
+        stage('Login') { 
             steps {
-                sh '''
-                docker build -t ${DOCKER_IMAGE} .
-                docker login -u officialprakhar2108@gmail.com --password-stdin dckr_pat_Tb_s_gu4JRFDxmCqJAPYcxYlTIY
-                '''
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin' 
             }
         }
         stage('PUSH') {
             steps {
-                sh 'docker push ${DOCKER_IMAGE}'
+                sh 'docker push prakie7/react-app'
             }
         }
     }
