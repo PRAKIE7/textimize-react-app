@@ -9,7 +9,7 @@ pipeline {
             steps {
                 sh '''
                 docker build -t ${DOCKER_IMAGE} .
-                docker login -u prakie7 --password-stdin dckr_pat_Tb_s_gu4JRFDxmCqJAPYcxYlTIY
+                docker login -u officialprakhar2108@gmail.com --password-stdin dckr_pat_Tb_s_gu4JRFDxmCqJAPYcxYlTIY
                 '''
             }
         }
