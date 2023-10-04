@@ -9,7 +9,7 @@ pipeline {
             steps {
                 sh '''
                 docker build -t ${DOCKER_IMAGE} .
-                docker login -u prakie7 --password-stdin ${DOCKERHUB_CRED}
+                docker login -u prakie7 --password-stdin dckr_pat_Tb_s_gu4JRFDxmCqJAPYcxYlTIY
                 '''
             }
         }
