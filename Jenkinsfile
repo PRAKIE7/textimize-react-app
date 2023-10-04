@@ -12,7 +12,10 @@ pipeline {
         stage('Trivy') {
             steps {
                 script{
-                    sh 'trivy image prakie7/react-app'
+                    sh '''
+                    docker run aquasec/trivy
+                    trivy image prakie7/react-app
+                    '''
                 }
             }
         }
