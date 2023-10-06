@@ -1,62 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    deployment.kubernetes.io/revision: "1"
-  creationTimestamp: "2023-10-06T19:00:59Z"
-  generation: 1
+  name: my-text-app 
   labels:
     app: my-text-app
-  name: my-text-app
-  namespace: default
-  resourceVersion: "1260792"
-  uid: 6b3b220b-8a81-48fe-9a8e-a1b0aa4ae09d
 spec:
-  progressDeadlineSeconds: 600
-  replicas: 1
-  revisionHistoryLimit: 10
+  replicas: 1 
   selector:
     matchLabels:
       app: my-text-app
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        app: my-text-app
+        app: my-text-app 
     spec:
       containers:
-      - image: prakie7/textimize-react-app:latest-textm
-        imagePullPolicy: IfNotPresent
-        name: textimize-react-app
-        resources: {}
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
-      terminationGracePeriodSeconds: 30
-status:
-  availableReplicas: 1
-  conditions:
-  - lastTransitionTime: "2023-10-06T19:02:39Z"
-    lastUpdateTime: "2023-10-06T19:02:39Z"
-    message: Deployment has minimum availability.
-    reason: MinimumReplicasAvailable
-    status: "True"
-    type: Available
-  - lastTransitionTime: "2023-10-06T19:00:59Z"
-    lastUpdateTime: "2023-10-06T19:02:39Z"
-    message: ReplicaSet "my-text-app-fdc546785" has successfully progressed.
-    reason: NewReplicaSetAvailable
-    status: "True"
-    type: Progressing
-  observedGeneration: 1
-  readyReplicas: 1
-  replicas: 1
-  updatedReplicas: 1
+      - name: my-text-app 
+        image: prakie7/textimize-react-app:latest-textm 
+        ports:
+        - containerPort: 3000 
