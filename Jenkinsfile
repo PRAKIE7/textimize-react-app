@@ -9,17 +9,6 @@ pipeline {
             sh 'docker build -t prakie7/react-app .'
           }
         }
-        stage('Trivy') {
-            steps {
-                script{
-                    sh '''
-                    docker run aquasec/trivy
-                    curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/master/contrib/install.sh
-                    trivy image prakie7/react-app
-                    '''
-                }
-            }
-        }
         stage('Login') { 
             steps {
                 sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin' 
@@ -29,6 +18,18 @@ pipeline {
             steps {
                 sh 'docker push prakie7/react-app'
             }
+        }
+        stage('Deployment') {
+            steps {
+               echo 'Deployinging....'
+              bat ' kubectl delete -f react-svc.yaml'
+              bat ' kubectl apply -f react-svc.yaml'
+            }
+        }
+    }
+    post {
+        always {
+            echo 'Portal image is deployed in to Kubernetes ' 
         }
     }
 }
