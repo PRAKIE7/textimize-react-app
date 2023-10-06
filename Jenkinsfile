@@ -21,9 +21,9 @@ pipeline {
         }
         stage('Deployment') {
             steps {
-                script{
-                    kubernetesDeploy(configs: "react-deployment.yaml", "react-svc.yaml")
-                }
+                echo 'Deploying...'
+                sh 'kubectl create -f react-deployment.yaml'
+                sh 'kubectl create -f react-svc.yaml'
             }
         }
     }
