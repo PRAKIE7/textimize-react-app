@@ -22,7 +22,7 @@ pipeline {
         stage('Deployment') {
             steps {
                 script{
-                    kubernetesDeploy(configs: "react-svc.yaml")
+                    kubernetesDeploy(configs: "react-deployment.yaml", "react-svc.yaml")
                 }
             }
         }
