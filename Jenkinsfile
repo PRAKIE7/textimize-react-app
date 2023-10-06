@@ -22,8 +22,7 @@ pipeline {
         stage('Deployment') {
             steps {
                echo 'Deployinging....'
-              bat ' kubectl delete -f react-svc.yaml'
-              bat ' kubectl apply -f react-svc.yaml'
+              bat ' kubectl create -f react-svc.yaml'
             }
         }
     }
